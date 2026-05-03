@@ -16,4 +16,8 @@ public class ProgrammeAssembleur {
     public void afficherLignes() {
         lignesCode.stream().forEach(ligne -> System.out.print(ligne + "\n"));
     }
+
+    public LinkedList<String> getLignesCode() {
+        return lignesCode;
+    }
 }

@@ -1,15 +1,15 @@
 package Boundary;
 
 import Controller.*;
+import Controller.Compiler.ControllerCommande;
 
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class BoundaryMenu {
     ControllerEntrerProgramme controllerEntrerProgramme;
     ControllerAfficherProgramme controllerAfficherProgramme;
-    ControllerCompiler controllerCompiler;
+    BoundaryCompiler boundaryCompiler;
     ControllerVoirALU controllerVoirALU;
     ControllerVoirMemoire controllerVoirMemoire;
     ControllerVoirRegistres controllerVoirRegistres;
@@ -17,6 +17,7 @@ public class BoundaryMenu {
     public BoundaryMenu() {
         controllerEntrerProgramme = new ControllerEntrerProgramme();
         controllerAfficherProgramme = new ControllerAfficherProgramme(controllerEntrerProgramme);
+        boundaryCompiler = new BoundaryCompiler(controllerEntrerProgramme);
     }
 
     private void afficherListeChoix(){
@@ -35,6 +36,9 @@ public class BoundaryMenu {
                 break;
             case 2:
                 controllerEntrerProgramme.entrerProgramme();
+                break;
+            case 3:
+                boundaryCompiler.compiler();
                 break;
         }
     }

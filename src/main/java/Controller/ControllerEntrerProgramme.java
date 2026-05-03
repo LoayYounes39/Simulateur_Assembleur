@@ -29,4 +29,7 @@ public class ControllerEntrerProgramme {
     public ProgrammeAssembleur getProgrammeAssembleur() {
         return programmeAssembleur;
     }
+    public LinkedList<String> getLignesCode(){
+        return programmeAssembleur.getLignesCode();
+    }
 }
