@@ -18,31 +18,30 @@ public class BoundaryCommande {
     }
 
     private boolean isBinary(String s) {
-        return s.matches("0b[01]+");
+        return s.matches("#0b[01]+");
     }
 
     private boolean isHexadecimal(String s) {
-        return s.matches("0x[0-9a-fA-F]+");
+        return s.matches("#0x[0-9a-fA-F]+");
     }
 
     private boolean isDecimal(String s) {
-        return s.matches("\\d+");
+        return s.matches("#\\d+");
     }
 
     public short parseConstant(String s) {
-        if (s == null) throw new IllegalArgumentException("null");
 
         s = s.toLowerCase();
 
         if (isBinary(s)) {
-            return Short.parseShort(s.substring(2), 2);
+            return Short.parseShort(s.substring(3), 2);
         }
 
         if (isHexadecimal(s)) {
-            return Short.parseShort(s.substring(2), 16);
+            return Short.parseShort(s.substring(3), 16);
         }
 
-        return Short.parseShort(s);
+        return Short.parseShort(s.substring(1), 10);
     }
 
     public short toNumRegistre(String reg){
@@ -63,10 +62,14 @@ public class BoundaryCommande {
     }
 
     protected void verificationDernierParametre() throws CommandePasValideException {
-        if (strings.length >= 2) {
+        if (strings.length == 2) {
             if (!isConstant(strings[1]) && !isRegister(strings[1])) {
                 throw new CommandePasValideException("Deuxième Paramètre dans la commande " + nom + " pas valide");
             }
         }
+    }
+
+    public void setLigneCourant(String[] strings) {
+        this.strings = strings;
     }
 }

@@ -2,16 +2,24 @@ package Controller.Compiler;
 
 import Entity.BancRegistres;
 
-public class ControllerCommande {
-    BancRegistres bc;
+public abstract class ControllerCommande {
+    protected BancRegistres bc;
 
-    public ControllerCommande(BancRegistres bc) {
-        this.bc = bc;
+    public ControllerCommande() {
+        this.bc = new BancRegistres();
     }
 
-    public void sauver(Short numReg, Short valCons){
-        if (valCons < Short.MIN_VALUE || valCons > Short.MAX_VALUE){
+    public void store(Short numReg, Short valCons){
+        if (valCons < Short.MIN_VALUE || valCons > Short.MAX_VALUE) {
             throw new IllegalArgumentException("hors short");
         }
+        bc.mettreAJour(numReg, valCons);
+    }
+    public Short load(Short numReg){
+        return bc.getCase(numReg);
+    }
+
+    public BancRegistres getBc() {
+        return bc;
     }
 }

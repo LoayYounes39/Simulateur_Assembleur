@@ -10,7 +10,7 @@ public class BoundaryMov extends BoundaryCommande {
         controllerMov = new ControllerMov();
     }
 
-    public void veriferValPar(String[] strings) throws CommandePasValideException {
+    public void deplacer() throws CommandePasValideException {
         super.veriferValPar();
         super.verificationDernierParametre();
         if (isConstant(strings[1])){
@@ -18,5 +18,9 @@ public class BoundaryMov extends BoundaryCommande {
         } else {
             controllerMov.deplacerRegistre(toNumRegistre(strings[0]) , toNumRegistre(strings[1]));
         }
+    }
+
+    public ControllerMov getControllerMov() {
+        return controllerMov;
     }
 }

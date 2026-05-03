@@ -5,6 +5,7 @@ public enum Commande {
     ADD,
     SUB;
 
+
     public static Commande fromString(String value) {
         for (Commande c : Commande.values()) {
             if (c.name().equalsIgnoreCase(value)) {

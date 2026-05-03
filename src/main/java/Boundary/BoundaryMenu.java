@@ -10,6 +10,7 @@ public class BoundaryMenu {
     ControllerEntrerProgramme controllerEntrerProgramme;
     ControllerAfficherProgramme controllerAfficherProgramme;
     BoundaryCompiler boundaryCompiler;
+    ControllerCommande controllerCommande;
     ControllerVoirALU controllerVoirALU;
     ControllerVoirMemoire controllerVoirMemoire;
     ControllerVoirRegistres controllerVoirRegistres;
@@ -18,6 +19,9 @@ public class BoundaryMenu {
         controllerEntrerProgramme = new ControllerEntrerProgramme();
         controllerAfficherProgramme = new ControllerAfficherProgramme(controllerEntrerProgramme);
         boundaryCompiler = new BoundaryCompiler(controllerEntrerProgramme);
+
+        controllerVoirRegistres = new ControllerVoirRegistres(boundaryCompiler.getDernierControllerAppele());
+
     }
 
     private void afficherListeChoix(){
@@ -39,6 +43,9 @@ public class BoundaryMenu {
                 break;
             case 3:
                 boundaryCompiler.compiler();
+                break;
+            case 6:
+                controllerVoirRegistres.afficherRegistres();
                 break;
         }
     }
