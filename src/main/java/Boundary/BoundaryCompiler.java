@@ -12,7 +12,6 @@ public class BoundaryCompiler {
     ControllerEntrerProgramme controllerEntrerProgramme;
 
     public BoundaryCompiler(ControllerEntrerProgramme controllerEntrerProgramme) {
-        boundaryMov = new BoundaryMov();
         this.controllerEntrerProgramme = controllerEntrerProgramme;
     }
 
@@ -41,7 +40,8 @@ public class BoundaryCompiler {
             try {
                 switch (listeMots[0].toLowerCase()) {
                     case "mov":
-                        boundaryMov.veriferValPar(Arrays.copyOfRange(listeMots, 1, listeMots.length));
+                        boundaryMov = new BoundaryMov(Arrays.copyOfRange(listeMots, 1, listeMots.length));
+                        boundaryMov.veriferValPar();
                         break;
                 }
             } catch (CommandePasValideException e) {
